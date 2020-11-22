@@ -1,0 +1,19 @@
+x=0
+clr=0
+clr1=0
+clr2=0
+def setup():
+    background("#FFFFFF")
+    size(400,400)
+    strokeWeight(5)
+def draw():
+    stroke(clr,clr1,clr2)
+    translate(200,200)
+    rotate(radians(x))
+    line(0,0,400,0)
+    global x,clr,clr1,clr2
+    x+=1
+    clr+=0.5
+    clr1+=3.5
+    clr2+=2.8
+
