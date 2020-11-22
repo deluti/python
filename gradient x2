@@ -1,0 +1,22 @@
+x=0
+y=0
+clr=0
+clr1=0
+clr2=0
+f=20
+def setup():
+    size(400,400)
+def draw():
+    fill(clr,clr1,clr2)
+    translate(200,200)
+    rotate(radians(y))
+    circle(x,0,f)
+    global x,y,clr,clr1,clr2,f
+    x+=0.1
+    y+=1
+    clr+=0.1
+    clr1=23
+    clr2=156
+    f+=0.04
+    
+    
