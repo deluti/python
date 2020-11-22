@@ -1,0 +1,15 @@
+y=0
+x=0
+def setup():
+    size(400,400)
+def draw():
+    stroke("#FFFFFF")
+    fill(x)
+    background("#FFFFFF")
+    translate(200,200)
+    rotate(radians(y))
+    rect(20,0,100,100)
+    global y,x
+    y+=4
+    x+=0.4
+    
