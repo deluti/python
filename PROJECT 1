@@ -1,0 +1,45 @@
+s=0
+m=0
+c=0
+rec=0
+f=0
+f1=0
+def setup():
+    fill(c,c,c)
+    size(400,400)
+    strokeWeight(10)
+    background("#FFFFFF")
+def draw():
+    ellipse(pmouseX,pmouseY,f,f1)
+    line(mouseX,mouseY,pmouseX,pmouseY)
+    fill(255,255,255)
+    stroke(s)
+    circle(mouseX,mouseY,m)
+    rect(mouseX,mouseY,rec,rec)
+def mouseClicked():
+    global s
+    if s == 0:
+        s = 255
+    else:
+        s = 0
+def keyPressed():
+    global m,c,rec,f,f1
+    if key == 'q':
+        m = 50
+    else:
+        m = 0
+    
+    if key == 'w':
+        rec = 50
+    else:
+        rec = 0
+    
+    if key == 'e':
+        f = 50
+    else:
+        f = 0
+    
+    if key == 'e':
+        f1 = 20
+    else:
+        f1 = 0    
