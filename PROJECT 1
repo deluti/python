@@ -5,14 +5,16 @@ rec=0
 f=0
 f1=0
 def setup():
-    fill(c,c,c)
     size(400,400)
-    strokeWeight(10)
+    strokeWeight(5)
     background("#FFFFFF")
 def draw():
+    if s == 255:
+        fill(s)
+    else:
+        fill(random(0,255),random(0,255),random(0,255))
     ellipse(pmouseX,pmouseY,f,f1)
     line(mouseX,mouseY,pmouseX,pmouseY)
-    fill(255,255,255)
     stroke(s)
     circle(mouseX,mouseY,m)
     rect(mouseX,mouseY,rec,rec)
@@ -42,4 +44,7 @@ def keyPressed():
     if key == 'e':
         f1 = 20
     else:
-        f1 = 0    
+        f1 = 0   
+    
+    if key == ' ':
+        background("#FFFFFF")   
