@@ -9,10 +9,6 @@ def setup():
     strokeWeight(5)
     background("#FFFFFF")
 def draw():
-    if s == 255:
-        fill(s)
-    else:
-        fill(random(0,255),random(0,255),random(0,255))
     ellipse(pmouseX,pmouseY,f,f1)
     line(mouseX,mouseY,pmouseX,pmouseY)
     stroke(s)
@@ -26,6 +22,7 @@ def mouseClicked():
         s = 0
 def keyPressed():
     global m,c,rec,f,f1
+    
     if key == 'q':
         m = 50
     else:
@@ -44,7 +41,22 @@ def keyPressed():
     if key == 'e':
         f1 = 20
     else:
-        f1 = 0   
+        f1 = 0 
+    
+    if key == '1':
+        rect(100,100,200,200)
     
     if key == ' ':
-        background("#FFFFFF")   
+        background("#FFFFFF")
+   
+    if key == '2':
+        circle(200,200,100)
+        
+    if key == '3':
+        rect(random(0,400),random(0,400),random(10,70),random(10,70))
+        
+    if key == '4':
+        circle(random(0,400),random(0,400),random(10,70))
+    
+    if key == '5':
+        text
