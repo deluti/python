@@ -4,6 +4,9 @@ c=0
 rec=0
 f=0
 f1=0
+r=0
+g=0
+b=0
 def setup():
     size(400,400)
     strokeWeight(5)
@@ -21,7 +24,7 @@ def mouseClicked():
     else:
         s = 0
 def keyPressed():
-    global m,c,rec,f,f1
+    global m,c,rec,f,f1,r,g,b
     
     if key == 'q':
         m = 50
@@ -58,4 +61,14 @@ def keyPressed():
     if key == '4':
         circle(random(0,400),random(0,400),random(10,70))
     
-
+    if key == 'r':
+        fill(255,g,b)
+    
+    if key == 'g':
+        fill(r,255,b)
+    
+    if key == 'b':
+        fill(r,g,255)
+    
+    if key == 'h':
+        fill(255,255,255)
