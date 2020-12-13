@@ -1,23 +1,18 @@
 x=0
+y=0
 jump=False
 move=1
 def setup():
-    size(400,400)
+    size(1000,800)
 def draw():
-    background("#FFFFFF")
-    circle(x,350,100)
-    
-    if jump == True:
-        if move == 1:
-            y+=move
-            if y < h1:
-                move = h
-    else:
-        y+=move
-        if y > 
+    circle(x,y,100)
 def keyPressed():
-    global x
+    global x,y
     if key == 'd':
         x+=5
     if key == 'a':
         x-=5
+    if key == 'w':
+        y-=5
+    if key == 's':
+        y+=5
