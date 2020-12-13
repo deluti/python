@@ -58,5 +58,4 @@ def keyPressed():
     if key == '4':
         circle(random(0,400),random(0,400),random(10,70))
     
-    if key == '5':
-        text
+
