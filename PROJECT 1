@@ -8,7 +8,7 @@ r=0
 g=0
 b=0
 def setup():
-    size(400,400)
+    size(1000,1000)
     strokeWeight(5)
     background("#FFFFFF")
 def draw():
@@ -56,10 +56,10 @@ def keyPressed():
         circle(200,200,100)
         
     if key == '3':
-        rect(random(0,400),random(0,400),random(10,70),random(10,70))
+        rect(random(0,1000),random(0,1000),random(10,70),random(10,70))
         
     if key == '4':
-        circle(random(0,400),random(0,400),random(10,70))
+        circle(random(0,1000),random(0,1000),random(10,70))
     
     if key == 'r':
         fill(255,g,b)
