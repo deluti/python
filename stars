@@ -1,0 +1,11 @@
+x=0
+def setup():
+    size(800,800)
+    background("#02016C")
+def draw():
+    circle(random(0,800),random(0,800),5)
+    
+def mouseClicked():
+    global x
+    if x == 0:
+        background("#02016C")
