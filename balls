@@ -1,14 +1,21 @@
-x=200
+x=200x=200
 z=200
+y=1
+c=200
 def setup():
     size(400,400)
 
 def draw():
     background("#FFFFFF")
-    circle(x,200,50)
-    global x,z
+    circle(x,y,50)
+    global x,z,c,y
     if x > 400:
         z=-5
     if x < 0:
         z = 5
     x+=z
+    if y > 400:
+        c=-5
+    if y < 0:
+        c = 5
+    y+=c
