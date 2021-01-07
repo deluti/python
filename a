@@ -1,0 +1,25 @@
+x=0
+y=375
+def setup():
+    size(400,400)
+    line(0,50,400,50)
+def draw():
+    background("#FFFFFF")
+    line(0,50,400,50)
+    line(0,100,400,100)
+    line(0,150,400,150)
+    line(0,200,400,200)
+    line(0,250,400,250)
+    line(0,300,400,300)
+    line(0,350,400,350)
+    circle(x,y,50)
+def keyPressed():
+    global x,y
+    if key == 'd':
+        x+=10
+    if key == 'a':
+        x-=10
+    if key == ' ':
+        y-=50
+    if key == 's':
+        y+=50
