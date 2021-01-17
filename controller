@@ -1,0 +1,52 @@
+o=200
+o1=200
+o2=50
+
+x=10
+y=350
+w=10
+h=10
+
+x1=20
+y1=340
+w1=10
+h1=10
+
+x2=30
+y2=350
+w2=10
+h2=10
+
+x3=20
+y3=360
+w3=10
+h3=10
+def setup():
+    strokeWeight(5)
+    size(400,400)
+def draw():
+    background("#FFFFFF")
+    rect(x,y,w,h)
+    
+    rect(x1,y1,w1,h1)
+    
+    rect(x2,y2,w2,h2)
+    
+    rect(x3,y3,w3,h3)
+    
+    circle(o,o1,o2)
+    
+def mouseClicked():
+    global o,o1,o2
+    
+    if mouseX > x and mouseX < x+w and mouseY > y and mouseY < y+h:
+        o-=10
+        
+    if mouseX > x1 and mouseX < x1+w1 and mouseY > y1 and mouseY < y1+h1:
+        o1-=10
+        
+    if mouseX > x2 and mouseX < x2+w2 and mouseY > y2 and mouseY < y2+h2:
+        o+=10
+        
+    if mouseX > x3 and mouseX < x3+w3 and mouseY > y3 and mouseY < y3+h3:
+        o1+=10
