@@ -1,0 +1,58 @@
+x=10
+y=10
+w=40
+h=40
+
+x1=450
+y1=10
+w1=40
+h1=40
+
+x2=10
+y2=60
+w2=40
+h2=40
+
+x3=450
+y3=60
+w3=40
+h3=40
+
+x4=10
+y4=110
+w4=40
+h4=40
+
+def setup():
+    strokeWeight(5)
+    size(500,500)
+    background("#FFFFFF")
+def draw():
+    line(mouseX,mouseY,pmouseX,pmouseY)
+    fill("#FF0000")
+    rect(x,y,w,h)
+    fill("#2100FF")
+    rect(x1,y1,w1,h1)
+    fill("#1CFF00")
+    rect(x2,y2,w2,h2)
+    fill("#FFEA00")
+    rect(x3,y3,w3,h3)
+    fill("#FFFFFF")
+    rect(x4,y4,w4,h4)
+def mouseClicked():
+    global x,y,w,h,x1,y1,w1,h1,x2,y2,w2,h2,x3,y3,w3,h3,x4,y4,w4,h4
+    
+    if mouseX > x and mouseX < x+w and mouseY > y and mouseY < y+h:
+            stroke("#FF0000")
+    
+    if mouseX > x1 and mouseX < x1+w1 and mouseY > y1 and mouseY < y1+h1:
+            stroke("#2100FF")
+            
+    if mouseX > x2 and mouseX < x2+w2 and mouseY > y2 and mouseY < y2+h2:
+            stroke("#1CFF00")
+    
+    if mouseX > x3 and mouseX < x3+w3 and mouseY > y3 and mouseY < y3+h3:
+            stroke("#FFEA00")
+    
+    if mouseX > x4 and mouseX < x4+w4 and mouseY > y4 and mouseY < y4+h4:
+            stroke("#FFFFFF")
