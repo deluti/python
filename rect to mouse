@@ -1,0 +1,17 @@
+x=190
+y=190
+w=30
+h=30
+def setup():
+    size(400,400)
+def draw():
+    global x,y,w,h
+    background("#FFFFFF")
+    rect(x,y,w,h)
+    
+
+    
+    if mousePressed:
+        if mouseX >= x and mouseX <= x+w and mouseY >= y and mouseY <= y+h:
+            x=mouseX-15
+            y=mouseY-15
