@@ -1,0 +1,27 @@
+o=50
+
+x=10
+y=10
+w=40
+h=40
+
+x1=350
+y1=10
+w1=40
+h1=40
+def setup():
+    size(400,400)
+    background("#FFFFFF")
+def draw():
+    background("#FFFFFF")
+    circle(200,200,o)
+    rect(x,y,w,h)
+    rect(x1,y1,w1,h1)
+def mouseClicked():
+    global o,x,y,x1,y1,h,h1,w,w1
+    
+    if mouseX > x and mouseX < x+w and mouseY > y and mouseY < y+h:
+        o+=10
+        
+    if mouseX > x1 and mouseX < x1+w1 and mouseY > y1 and mouseY < y1+h1:
+        o-=10
