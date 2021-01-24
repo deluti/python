@@ -1,0 +1,17 @@
+y=3
+s=random(0,400)
+def setup():
+    size(400,400)
+    frameRate(1)
+def draw():
+    global y
+    background("#FFFFFF")
+    for x in range(y):
+        s=random(0,400)
+        rect(s,random(0,400),50,50)
+def mouseClicked():
+    global y
+    if mouseButton == LEFT:
+        y=y-1
+    if mouseButton == RIGHT:
+        y=y+1
