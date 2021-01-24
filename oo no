@@ -1,0 +1,18 @@
+x=10
+s=0
+d=100
+f=255
+def setup():
+    size(400,400)
+    background("#FFFFFF")
+def draw():
+    global x,s,d,f
+    fill(s,d,f)
+    background("#FFFFFF")
+    for step in range (20):
+        rect(x,10+step*20,10,10)
+        x+=0.1
+    s+=1
+    d+=1
+    f-=1
+    
