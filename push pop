@@ -1,0 +1,9 @@
+size(400,400)
+rectMode(CENTER)
+translate(0,200)
+for x in range(30):
+    translate(50,0)
+    push()
+    rotate(radians(x*5))
+    rect(0,0,50,50)
+    pop()
