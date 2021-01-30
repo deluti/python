@@ -1,0 +1,21 @@
+def setup():
+    size(400,400)
+def draw():
+    background("#FFFFFF")
+    rectMode(CENTER)
+    y = 390
+    y1 = 0
+    x=390
+    x1=0
+    while mouseY < y:
+        rect(mouseX,y,10,10)
+        y-=10
+    while mouseY > y1:
+        rect(mouseX,y1,10,10)
+        y1+=10
+    while mouseY < x:
+        rect(x,mouseY,10,10)
+        x-=10
+    while mouseY > x1:
+        rect(x1,mouseY,10,10)
+        x1+=10
