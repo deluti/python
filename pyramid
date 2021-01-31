@@ -1,0 +1,7 @@
+def setup():
+    size(850,850)
+    translate(400,0)
+    for y in range(8):
+        for x in range(-25*y , 25*y , 50):
+            circle(x,y*50,50)
+ 
