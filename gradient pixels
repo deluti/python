@@ -1,0 +1,10 @@
+size(400,400)
+clr=0
+
+for x in range(0,400,50):
+        for y in range(0,400,50):
+            if clr == 255:
+                clr = 255
+            clr+=5
+            fill(clr,clr,clr)
+            square(x,y,50)
