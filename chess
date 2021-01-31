@@ -1,0 +1,23 @@
+t=3
+def setup():
+    size(t*50,t*50)
+
+    clr='black'
+
+    for x in range(t):
+        for y in range(t):
+            if clr == 'black':
+                fill(0)
+            elif clr == 'white':
+                fill(255)
+            square(x*50,y*50,50)
+            if clr == 'black':
+                clr = 'white'
+            elif clr == 'white':
+                clr = 'black'
+        if t % 2 == 0:
+            if clr == 'black':
+                clr = 'white'
+            elif clr == 'white':
+                clr = 'black'
+
