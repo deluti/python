@@ -1,0 +1,23 @@
+arr=['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']
+index=0
+x=6
+clr=1
+def setup():
+    size(400,400)
+    textSize(50)
+def draw():
+    global arr,index,x
+    background(0)
+    for i in range(len(arr)):
+        if i == index:
+            fill('#CB4242')
+        text(arr[i],100,55*i+55)
+        fill('#FFFFFF')
+def mouseClicked():
+    global arr,index,x,clr
+    if mouseButton == LEFT and index!=6:
+        index += 1
+    elif mouseButton == RIGHT and index!=0:
+        index -= 1
+def keyPressed():
+    global arr,index,x
