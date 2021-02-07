@@ -1,0 +1,21 @@
+arr=[ [255,0,0] , [0,0,255] ]
+index=arr[0][1]
+index1=arr[1][1]
+
+def setup():
+    size(400,400)
+    textSize(50)
+def draw():
+    global arr,index,x,index1
+    background(0)
+    for i in arr:
+        circle(150,150,100)
+        fill(i[0],i[1],i[2])
+        circle(250,250,100)
+    
+def mouseClicked():
+    global arr,index,x,clr
+    if mouseButton == LEFT and index!=6:
+        index += 10
+    elif mouseButton == RIGHT and index!=0:
+        index -= 10
