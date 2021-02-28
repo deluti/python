@@ -16,18 +16,26 @@ i = 0
 o = 0
 clr = 0
 index = 1
+clr1= 0
 def setup():
     size(1000,1000)
 def draw():
-    global index,lst,circleX,circleY,circleS,p,o,i,u,clr
+    global index,lst,circleX,circleY,circleS,p,o,i,u,clr,clr1
     for y in range(len(lst)):
         for x in range (len(lst[y])):
             if clr == 1:
                 if circleX > x*100 and circleY > y*100 and circleX < x*100+100 and circleY < y*100+100:
                     lst[y][x] = 1
+            if clr1 == 1:
+                if circleX > x*100 and circleY > y*100 and circleX < x*100+100 and circleY < y*100+100:
+                    lst[y][x] = 2
             
             if lst[y][x] == 1:
                 fill(0)
+            elif lst[y][x] == 0:
+                fill(255)
+            if lst[y][x] == 2:
+                fill(255,0,0)
             elif lst[y][x] == 0:
                 fill(255)
             rect(x*100,y*100,100,100)
@@ -47,7 +55,7 @@ def draw():
         circleY -= 5
 
 def keyTyped():
-    global index,lst,circleX,circleY,circleS,p,u,i,o,clr
+    global index,lst,circleX,circleY,circleS,p,u,i,o,clr,clr1
     for y in range(len(lst)):
         for x in range (len(lst[y])):
             if clr == 1:
@@ -59,6 +67,12 @@ def keyTyped():
     elif clr == 1:
         if key == ' ':
             clr = 0
+    if clr1 == 0:
+        if key == '1':
+            clr1 = 1
+    elif clr1 == 1:
+        if key == '1':
+            clr1 = 0
     
     if key ==  'd':
         p = 1
@@ -77,4 +91,3 @@ def keyTyped():
         o = 1
     elif key == 'a' or 's' or 'd':
         o = 0
-    
