@@ -1,0 +1,24 @@
+x=200
+y=200
+p=0
+def setup():
+    size(400,400)
+def draw():
+    global x,y,p
+    line(0,200,400,200)
+    background("#FFFFFF")
+    rect(x,y,30,30)
+    if p == 1:
+        y-=3
+    if y < 201:
+        y+=1
+    if y < 150:
+        p=0
+def keyPressed():
+    global x,y,p
+    if key == ' ':
+        p=1
+    if key == 'd':
+        x+=3
+    if key == 'a':
+        x-=3
