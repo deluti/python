@@ -1,0 +1,80 @@
+lst = [[0,0,0,0,0,0,0,0,0,0],
+       [0,0,0,0,0,0,0,0,0,0],
+       [0,0,0,0,0,0,0,0,0,0],
+       [0,0,0,0,0,0,0,0,0,0],
+       [0,0,0,0,0,0,0,0,0,0],
+       [0,0,0,0,0,0,0,0,0,0],
+       [0,0,0,0,0,0,0,0,0,0],
+       [0,0,0,0,0,0,0,0,0,0],
+       [0,0,0,0,0,0,0,0,0,0]]
+circleX = 50
+circleY = 50
+circleS = 50
+p = 0
+u = 0 
+i = 0
+o = 0
+clr = 0
+index = 1
+def setup():
+    size(1000,1000)
+def draw():
+    global index,lst,circleX,circleY,circleS,p,o,i,u,clr
+    for y in range(len(lst)):
+        for x in range (len(lst[y])):
+            if clr == 1:
+                if circleX > x*100 and circleY > y*100 and circleX < x*100+100 and circleY < y*100+100:
+                    lst[y][x] = 1
+            
+            if lst[y][x] == 1:
+                fill(0)
+            elif lst[y][x] == 0:
+                fill(255)
+            rect(x*100,y*100,100,100)
+            circle(circleX,circleY,circleS)
+    
+    
+    if p == 1:
+        circleX += 5
+
+    if u == 1:
+        circleX -= 5
+
+    if i == 1:
+        circleY += 5
+
+    if o == 1:
+        circleY -= 5
+
+def keyTyped():
+    global index,lst,circleX,circleY,circleS,p,u,i,o,clr
+    for y in range(len(lst)):
+        for x in range (len(lst[y])):
+            if clr == 1:
+                if circleX > x*100 and circleY > y*100 and circleX < x*100+100 and circleY < y*100+100:
+                    lst[y][x] = 1
+    if clr == 0:
+        if key == ' ':
+            clr = 1
+    elif clr == 1:
+        if key == ' ':
+            clr = 0
+    
+    if key ==  'd':
+        p = 1
+    elif key == 'a' or 's' or 'w':
+        p = 0
+
+    if key == 'a':
+        u = 1
+    elif key == 'd' or 's' or 'w':
+        u = 0
+    if key == 's':
+        i = 1
+    elif key == 'a' or 'd' or 'w':
+        i = 0
+    if key == 'w':
+        o = 1
+    elif key == 'a' or 's' or 'd':
+        o = 0
+    
