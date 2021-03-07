@@ -1,0 +1,41 @@
+arr1=[0,0,0,0,0,0]
+arr=[3,2,5,3,6,4]
+o=0
+
+def vetka(x,y):
+
+    line(x,y,x+100,y)
+    line(x+30,y,x+35,y-5)
+    line(x+70,y,x+75,y-5)
+    line(x+30,y,x+35,y+5)
+    line(x+70,y,x+75,y+5)
+def snow(x,y,s):
+    
+    push()
+    translate(x,y)
+    scale(s)
+    x=0
+    y = 0
+    for i in range(8):
+        vetka(x,y)
+        rotate(radians(45))
+    pop()
+def setup():
+    size(400,400)
+    strokeWeight(5)
+def draw():
+    global arr,arr1,o
+
+    background(255)
+    
+    o+=1
+    for i in range (len(arr1)):
+        push()
+        translate(i*70+20,arr1[i])
+        rotate(radians(o))
+        snow(0,0,0.1)    
+        arr1[i] += arr[i]
+        if arr1[i] > height:
+            arr1[i] = 0
+            arr[i] = random(1,6)
+        pop()
