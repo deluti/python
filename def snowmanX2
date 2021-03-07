@@ -1,0 +1,21 @@
+t = 100
+r = 100
+
+def drawSnowman(x,y,s):
+    translate(x,y)
+    scale(s)
+    x= 0
+    y = 0
+    circle(x,y,50)
+    circle(x,y+70,100)
+    circle(x,y+160,140)
+    line(x+50,y+70,x+100,y+100)
+    line(x-50,y+70,x-100,y+100)
+    strokeWeight(5)
+    point(x-100,y+100)
+    point(x+100,y+100)
+    strokeWeight(1)
+def setup():
+    size(400,400)
+def draw():
+    drawSnowman(t,r,1)
