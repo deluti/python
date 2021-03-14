@@ -1,0 +1,9 @@
+def f(x):
+    y = 1
+    for i in x:        
+        y=y*i
+    return y
+
+size(400,400)
+textSize(50)
+text(f([5,5,3]),0,200)
