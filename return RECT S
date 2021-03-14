@@ -1,0 +1,9 @@
+def foo(x,y):
+    rect(x,y,x,y)
+    fill(255)
+    text(x*y,x,y+40)
+size(400,400)
+textSize(50)
+fill(0)
+foo(160,180)
+
