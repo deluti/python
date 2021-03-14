@@ -1,0 +1,9 @@
+def f(x):
+    y = ''
+    for i in range(len(x)):        
+        y = y + x[i]
+    return y
+
+size(400,400)
+textSize(50)
+text(f(["a","r","e"]),100,200)
