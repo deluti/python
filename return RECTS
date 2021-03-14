@@ -1,0 +1,12 @@
+def rects(x,y,s,x1,y1,s1):
+    fill(0)
+    rect(x,y,s,s)
+    fill(255,0,0) 
+    rect(x1,y1,s1,s1)
+    fill(255)
+    if x1 >= x and y1 >= y and x1+s1 <= x+s and y1+s1 <= y+s:
+        return True
+    return False
+size(400,400)
+textSize(50)
+text(rects(10,10,100,40,20,50),200,200)
