@@ -1,0 +1,80 @@
+#circle 
+circleX = 0
+circleY = 0
+circleS = 30
+
+p = 0
+p1 = 0
+p2 = 0
+p3 = 0
+c = 0
+
+score = 1
+
+of = 1
+
+#achive
+rect1 = -30
+rect2 = -30
+rect3 = 20
+
+rect4 = -30
+rect5 = -30
+rect6 = 20
+def setup():
+    size(400,400)
+def draw():
+    global circleX,circleY,circleS,p,p1,p2,p3,rect1,rect2,rect3,c,rect4,rect5,rect6,score,of
+    background(255)
+    circle(circleX,circleY,circleS)
+    rect(rect1,rect2,rect3,rect3)
+    fill(255,0,0)
+    rect(rect4,rect5,rect6,rect6)
+    if p == 1:
+        circleX+=score
+    if p1 == 1:
+        circleX-=score
+    if p2 == 1:
+        circleY+=score
+    if p3 == 1:
+        circleY-=score
+        
+    if c == 1:
+        rect1 = random(0,400)
+        rect2 = random(0, 400)
+        of = 0
+        c = 0
+    
+    if circleX > rect1 and circleY > rect2 and circleX < rect1+rect3 and circleY < rect2+rect3:
+        circleS += 5
+        rect1 = random(0,400)
+        rect2 = random(0, 400)
+    
+    if circleS == 40:
+        if circleX > rect1 and circleY > rect2 and circleX < rect1+rect3 and circleY < rect2+rect3:
+            score += 3
+            rect4 = random(0,400)
+            rect5 = random(0, 400)
+def keyPressed():
+    global p,p1,p2,p3,c,of
+    if key == 'd':
+        p = 1
+        if of == 1:
+            c = 1
+    else:
+        p = 0
+    if key == 'a':
+        p1 = 1
+    
+    else:
+        p1 = 0
+    if key == 's':
+        p2 = 1
+
+    else:
+        p2 = 0
+    if key == 'w':
+        p3 = 1
+
+    else:
+        p3 = 0
