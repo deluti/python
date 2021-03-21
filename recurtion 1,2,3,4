@@ -1,0 +1,9 @@
+#sum (4) -> 0,1,2,3,4 -> 10
+def sum(x):
+    
+    if x == 0:
+        return 0
+    return x + sum(x-1)
+size(400,400)
+textSize(50)
+text(sum(4) ,200,200)
