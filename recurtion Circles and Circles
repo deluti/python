@@ -1,0 +1,18 @@
+#sum (4) -> 0,1,2,3,4 -> 10
+def f(x,s):
+    if x > 1:
+        circle(0,0,x)
+        push()
+        translate(-x,0)
+        f(x/2,s*3/4)
+        pop()
+        push()
+        translate(x,0)
+        f(x/2,s*3/4)
+        pop()
+        
+size(400,400)
+rectMode(CENTER)
+textSize(50)
+translate(200,200)
+f(100,100)
