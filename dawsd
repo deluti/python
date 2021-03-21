@@ -1,0 +1,26 @@
+x = 200
+y = 200
+
+x1 = 175
+y1 = 200
+
+s = 50
+
+p = 0
+circleW = 0
+gamemode = 0
+def setup():
+    size(400,400)
+def draw():
+    global x,y,x1,y1,s,p,gamemode,circleW
+    circle(x,y,s)
+    circle(x1,y1,s)
+    if key == 's':
+        p = 1
+        gamemode = 1
+    if p == 1:
+        circleW += 1
+        y-=1
+        if circleW == 10:
+            y1 -= 1
+            circleW = circleW
