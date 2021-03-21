@@ -1,0 +1,26 @@
+#sum (4) -> 0,1,2,3,4 -> 10
+
+x = 0.85
+
+def f(s):
+    line(0,0,0,-s)
+    if s > 10:
+        push()
+        translate(0,-s)
+        rotate(radians(20))
+        f(s*x)
+        pop()
+
+        translate(0,-s)
+        rotate(radians(-20))
+        f(s*x)
+
+        
+        
+        
+        
+size(400,400)
+
+textSize(50)
+translate(200,400)
+f(60)
