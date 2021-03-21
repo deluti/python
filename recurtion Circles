@@ -1,0 +1,11 @@
+#sum (4) -> 0,1,2,3,4 -> 10
+def f(s):
+
+    if s > 10:
+        circle(0,0,s)
+        f(s-10)
+    
+size(400,400)
+textSize(50)
+translate(200,200)
+f(200)
