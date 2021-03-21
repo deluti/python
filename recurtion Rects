@@ -1,0 +1,13 @@
+#sum (4) -> 0,1,2,3,4 -> 10
+def f(x,y,s):
+
+    if s > 10:
+        rotate(radians(45))
+        rect(x,y,s,s)
+        f(x,y,s/sqrt(2))
+        
+size(400,400)
+rectMode(CENTER)
+textSize(50)
+translate(200,200)
+f(0,0,280)
