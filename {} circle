@@ -1,0 +1,10 @@
+lst = []
+
+dct = { 'x':50, 'y':100, 'd':100 }
+size(400,400)
+dct['t'] = 50
+shop = dict( milk = 40, meat = 300)
+shop['milk']
+dct['d'] = 50
+lst.append(dct)
+circle(lst[0]['x'],lst[0]['y'],lst[0]['d'])
