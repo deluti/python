@@ -1,0 +1,26 @@
+buttons = []
+button1 = {'x':10, 'y':10, 's':380, 's1':40, 'd':10,'a':25}
+button2 = {'x':100, 'y':100,'s':200}
+buttons.append(button1)
+buttons.append(button2)
+score = 0
+def setup():
+    size(400,400)
+def draw():
+    global score
+    background(255)
+    rect(buttons[0]['x'],buttons[0]['y'],buttons[0]['s'],buttons[0]['s1'])
+    rect(buttons[1]['x'],buttons[1]['y'],buttons[1]['s'],buttons[1]['s'])
+    fill(0)
+    textSize(40)
+    if score => 100:
+        text(UPDATE,100,100)
+    text(score,250,350)
+    fill(255)
+def mouseClicked():
+    global score
+    if mouseX > buttons[1]['x'] and \
+        mouseY < buttons[1]['y']+buttons[1]['s'] and  \
+            mouseY > buttons[1]['y'] and \
+                mouseX < buttons[1]['x']+buttons[1]['s']:
+        score = score + buttons[0]['d']
