@@ -1,0 +1,48 @@
+ball = dict(x = 100, y = 100, s = 10, z = 5, c =5)
+rocket = dict(x = 10, y = 350, s = 100, h=16)
+
+score = 0
+
+def score_(x):
+    global score
+    score+=1
+
+def speedC():
+    global ball
+    ball['c'] *= -1
+def setup():
+    size(400,400)
+    rectMode(CENTER)
+def draw():
+    global ball,score
+    rocket['x'] = mouseX
+    background("#FFFFFF")
+    
+    push()
+    fill(0)
+    textSize(25)
+    text(score,10,30)
+    pop()
+    
+    circle(ball['x'],ball['y'],ball['s'])
+    rect(rocket['x'],rocket['y'],rocket['s'],rocket['h'])
+    
+
+    if ball['x'] > 400 or ball['x']< 0:
+        ball['z'] *=-1
+        
+    ball['x']+=ball['z']
+    
+    if ball['y'] > 400:
+        speedC()
+    if ball['y'] < 0:
+        speedC()
+    if ball['y'] > 400:
+        ball['y'] = ball['y'] - 400
+        score = 0
+        
+    ball['y']+=ball['c']
+
+    if ball['x'] > rocket['x'] - rocket['s']/2 and ball['x'] < rocket['x'] + rocket['s']/2 and ball['y']+5+8 > rocket['y']:
+        score_(1)
+        speedC()
