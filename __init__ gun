@@ -1,0 +1,46 @@
+def gun(x,y):
+    push()
+    translate(x,y)
+    circle(0,0,30)
+    pop()
+def bullet(x,y):
+    push()
+    translate(x,y)
+    circle(0,0,10)
+    pop()
+class fire:
+    def __init__ (self, x, y, dy):
+        self.x = x
+        self.y = y
+        self.dy = dy
+    def gn(self):
+        gun(self.x,self.y)
+class bullets:
+    def __init__(self, x ,y):
+        self.x = x
+        self.y = y
+    def bullete(self):
+        bullet(self.x,self.y)
+    def moveUP(self):
+        self.y-=6
+
+gm = fire(200,380,380)
+gm1 = bullets(200,380)
+lst = []
+def setup():
+    size(400,400)
+
+def draw():
+    global gm,gm1
+
+    gm.gn()
+    if key == 'd':
+        gm.x += 1
+    if key == 'a':
+        gm.x -= 1
+    if key == ' ':
+        gm1.moveUP()
+        lst.append(bullet(gm.x,gm.y))
+        
+    for i in range(len(lst)):
+        gm1.moveUP()
