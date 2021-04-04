@@ -1,0 +1,28 @@
+class Circle:
+    def __init__(self,x,y,d):
+        self.x = x
+        self.y = y
+        self.d = d
+    
+    def draws(self):
+        circle(self.x,self.y,self.d)
+circ = Circle(200,100,50)
+    
+def setup():
+    size(400,400)
+def draw():
+    global circ
+
+    background(255)
+    circ.draws()
+
+    if key == 'd':
+        circ.x += 5
+    if key == 'a':
+        circ.x = circ.x - 5
+    if key == 'w':
+        circ.y -= 5
+    if key == 's':
+        circ.y = circ.y + 5
+    
+    
