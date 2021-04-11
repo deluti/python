@@ -22,25 +22,26 @@ class bullets:
     def bullete(self):
         bullet(self.x,self.y)
     def moveUP(self):
-        self.y-=6
+        self.y-=3
 
 gm = fire(200,380,380)
-gm1 = bullets(200,380)
 lst = []
 def setup():
     size(400,400)
 
 def draw():
-    global gm,gm1
+    global gm,lst
+    background(255)
 
     gm.gn()
-    if key == 'd':
-        gm.x += 1
-    if key == 'a':
-        gm.x -= 1
-    if key == ' ':
-        gm1.moveUP()
-        lst.append(bullet(gm.x,gm.y))
+    if keyPressed:
+        if key == 'd':
+            gm.x += 1
+        elif key == 'a':
+            gm.x -= 1
+        elif key == ' ':
+            lst.append(bullets(gm.x,gm.y))
         
-    for i in range(len(lst)):
-        gm1.moveUP()
+    for bul in lst:
+        bul.moveUP()
+        bul.bullete()
