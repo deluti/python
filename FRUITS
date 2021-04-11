@@ -6,6 +6,7 @@ class fruit:
     def draw_(self):
         fill (0,255,0)
         square(self.x * bs , self.y * bs , bs)
+        
 
 class fruits:
     def __init__(self):
@@ -17,35 +18,60 @@ class fruits:
         for index in range(len(self.flist)):
             if self.flist[index].x == x and self.flist[index].y == y:
                 delindex = index
+    
         if delindex != -1:
-            del self.flist[delindex]            
+            del self.flist[delindex]  
+            x = floor(random(0,w))   
+            y = floor(random(0,h))
+            self.append_(x,y)
     def draw_(self):
         for f in self.flist:
             f.draw_()
-            
-fts = fruits() 
-
-w = 16
-h =16
-bs = 30
-
-
-
+class player:
+    def __init__(self,x,y):
+        self.x = x
+        self.y = y
+    def pl(self):
+        circle(self.x*bs+bs/2,self.y*bs+bs/2,50)
+        
+if key == 'd':
+    x += 1
+    
+eng = player(0,0)
+fts = fruits()
+bs = 80
+w = 5
+h = 5
+g=2
+g1=3
 def setup():
-    global fts
+    global fts,w,h
     size(bs*w,bs*h)
-    fts.append_(3,4)
-    fts.append_(1,8)
+    fts.append_(2,3)
+    fts.append_(2,3)
     
-    fts.delete_(3,4)
-    
+
 def draw():
-    global fts
-    background(255)
-    
+    global eng,fts,bs,w,h,g,g1
     fill(255)
-    for y in range(w):
-        for x in range(h):
-            square(x*bs,y*bs , bs)
-            
+
+    for x in range(w):
+        for y in range(h):
+            square(x*bs,y*bs,bs)
+    eng.pl()
+    
+    fts.delete_(eng.x,eng.y)
+    print(eng.x)
     fts.draw_()
+    
+def keyPressed():
+    global eng,fts,bs
+    if key == 'd':
+        eng.x += 1
+    if key == 'a':
+        eng.x -= 1
+    if key == 's':
+        eng.y += 1
+    if key == 'w':
+        eng.y -= 1
+            
