@@ -1,0 +1,51 @@
+
+class fruit:
+    def __init__(self, x ,y):
+        self.x = x
+        self.y = y    
+    def draw_(self):
+        fill (0,255,0)
+        square(self.x * bs , self.y * bs , bs)
+
+class fruits:
+    def __init__(self):
+        self.flist =[]    
+    def append_(self,x, y):
+        self.flist.append(fruit(x,y))    
+    def delete_(self,x,y):
+        delindex = -1
+        for index in range(len(self.flist)):
+            if self.flist[index].x == x and self.flist[index].y == y:
+                delindex = index
+        if delindex != -1:
+            del self.flist[delindex]            
+    def draw_(self):
+        for f in self.flist:
+            f.draw_()
+            
+fts = fruits() 
+
+w = 16
+h =16
+bs = 30
+
+
+
+def setup():
+    global fts
+    size(bs*w,bs*h)
+    fts.append_(3,4)
+    fts.append_(1,8)
+    
+    fts.delete_(3,4)
+    
+def draw():
+    global fts
+    background(255)
+    
+    fill(255)
+    for y in range(w):
+        for x in range(h):
+            square(x*bs,y*bs , bs)
+            
+    fts.draw_()
