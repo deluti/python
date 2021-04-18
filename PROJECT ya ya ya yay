@@ -1,0 +1,91 @@
+lst_walls=[]
+
+class player:
+    def __init__(self,x,y,ys,speed):
+        self.x = x
+        self.y = y
+        self.ys = ys
+        self.speed = speed
+    def draw_(self):
+        rect(self.x,self.y,30,40)
+    
+    def jump(self):
+        self.y -= 6
+    def move(self,x,y):
+        for i in lst_walls:
+            if i.cret(self.x + x, self.y+ y) == 1:
+                return
+            if i.cret(self.x + 30 + x, self.y+ y) == 1:
+                return
+            if i.cret(self.x + x, self.y+ 40+ y) == 1:
+                return
+            if i.cret(self.x + 30+ x, self.y+40+ y) == 1:
+                return    
+        self.x +=x
+        self.y +=y
+    
+class platform:
+    def __init__(self,x,y,w,h):
+        self.x = x
+        self.y = y
+        self.w = w
+        self.h = h
+    def draw_(self):
+        
+        rect(self.x,self.y,self.w,self.h)
+    def cret(self,x,y):
+        point(x,y)
+        if x > self.x and x < self.x + self.w and y > self.y and y < self.y + self.h:
+            return 1
+        else:
+            return 0
+pl = player(0,310,200,5)
+jumpMODE = 0
+
+def setup():
+
+    lst_walls.append(platform(0,310,100,10))
+    lst_walls.append(platform(0,310,100,10))
+    lst_walls.append(platform(300,310,100,10))
+    lst_walls.append(platform(150,250,100,10))
+    lst_walls.append(platform(0,210,100,10))
+    lst_walls.append(platform(300,210,100,10))
+    #lst_walls.append(platform(50,150,100,10))
+    size(400,400)
+def draw():
+    global pl,jumpMODE,platf
+    background(255)
+    pl.draw_()
+    for i in lst_walls:
+        i.draw_()
+
+
+    if keyPressed:
+        if pl.x < 370:
+            if key == 'd':
+                #pl.x += 3
+                pl.move(3,0)
+
+        if pl.x > 0:
+            if key == 'a':
+                #pl.x -= 3
+                pl.move(-3,0)
+
+    if pl.y < 360 and pl.y+40 > 0:
+        #pl.y += pl.speed
+        pl.move(0,1)
+    if pl.y > pl.ys:
+        if jumpMODE == 1:
+        
+            pl.move(0,-6)
+    if pl.y == pl.ys:
+        jumpMODE = 0
+ 
+    if pl.y+40 < 0:
+        pl.y = 360
+
+def keyPressed():
+    global pl,jumpMODE
+    if key == ' ':
+        pl.ys = pl.y - 50
+        jumpMODE = 1
