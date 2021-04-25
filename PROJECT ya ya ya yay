@@ -39,6 +39,29 @@ class platform:
             return 1
         else:
             return 0
+class forg:
+    def __init__(self,x,y,left,right,speed):
+        self.x = x
+        self.y = y
+        self.left = left
+        self.right = right 
+        self.speed = speed   
+    def draw_(self):
+        rect(self.x,self.y,30,30)
+    def sleg(self):
+   
+        if self.left == 1:
+            self.x -= self.speed
+        if self.right == 1:
+            self.x += self.speed
+        
+        if self.x <= 0:
+            self.right = 1
+            self.left = 0
+        if self.x >= 370:
+            self.right = 0
+            self.left = 1
+fors = forg(200,350,1,0,1)
 pl = player(0,310,200,5)
 jumpMODE = 0
 
@@ -53,12 +76,26 @@ def setup():
     #lst_walls.append(platform(50,150,100,10))
     size(400,400)
 def draw():
-    global pl,jumpMODE,platf
+    global pl,jumpMODE,platf,fors
     background(255)
+
+    fors.draw_()
+    fors.sleg()
     pl.draw_()
     for i in lst_walls:
         i.draw_()
-
+    if fors.y < 370:
+        fors.y += 4
+    if pl.y >= 360:
+        if fors.x < pl.x:
+        
+            fors.x += 4
+        if fors.x > pl.x:
+        
+            fors.x -= 4
+    else:        
+        fors.speed = 1
+    
 
     if keyPressed:
         if pl.x < 370:
