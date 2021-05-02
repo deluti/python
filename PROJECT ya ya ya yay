@@ -1,5 +1,6 @@
 lst_walls=[]
 lst_spike = []
+lst_gun = []
 class player:
     def __init__(self,x,y,ys,speed):
         self.x = x
@@ -21,17 +22,17 @@ class player:
                 return
             if i.cret(self.x + 30+ x, self.y+40+ y) == 1:
                 return    
-        for i in lst_spike:
-            if i.cret1(self.x + x, self.y+ y) == 1:
+        for i in lst_gun:
+            if i.cret2(self.x + x, self.y+ y) == 1:
                 pl.x = 200
                 pl.y = 0
-            if i.cret1(self.x + 30 + x, self.y+ y) == 1:
+            if i.cret2(self.x + 30 + x, self.y+ y) == 1:
                 pl.x = 200
                 pl.y = 0
-            if i.cret1(self.x + x, self.y+ 40+ y) == 1:
+            if i.cret2(self.x + x, self.y+ 40+ y) == 1:
                 pl.x = 200
                 pl.y = 0
-            if i.cret1(self.x + 30+ x, self.y+40+ y) == 1:
+            if i.cret2(self.x + 30+ x, self.y+40+ y) == 1:
                 pl.x = 200
                 pl.y = 0   
         self.x +=x
@@ -110,7 +111,21 @@ class spike:
         if pl.x + 15 > self.x and pl.x + 15 < self.x + 30 and pl.y + 20 > self.y and pl.y + 20 < self.y + 30:
             pl.x = 200
             pl.y = 0
-        
+class gun:
+    def __init__(self,x,y):
+        self.x = x
+        self.y = y
+    def draw_(self):
+        circle(self.x,self.y,20) 
+        self.x += 5
+        if self.x < 0:
+            self.x == 400   
+    def cret2(self,x,y):
+        point(x,y)
+        if x > self.x and x < self.x + self.w and y > self.y and y < self.y + self.h:
+            return 1
+        else:
+            return 0
 fors = forg(200,350,1,0,1)
 pl = player(200,40,200,5)
 jumpMODE = 0
@@ -135,6 +150,8 @@ def setup():
     
     lst_spike.append(spike(300,180,30,30))
     lst_spike.append(spike(70,180,30,30))
+    
+    lst_gun.append(gun(401,60))
     size(400,400)
 def draw():
     global pl,jumpMODE,platf,fors,frut,group,fruitMode
