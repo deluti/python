@@ -9,6 +9,7 @@ class player:
         self.speed = speed
     def draw_(self):
         rect(self.x,self.y,30,40)
+
     
     def jump(self):
         self.y -= 6
@@ -22,17 +23,17 @@ class player:
                 return
             if i.cret(self.x + 30+ x, self.y+40+ y) == 1:
                 return    
-        for i in lst_gun:
-            if i.cret2(self.x + x, self.y+ y) == 1:
+        for i in lst_spike:
+            if i.cret1(self.x + x, self.y+ y) == 1:
                 pl.x = 200
                 pl.y = 0
-            if i.cret2(self.x + 30 + x, self.y+ y) == 1:
+            if i.cret1(self.x + 15 + x, self.y+ y) == 1:
                 pl.x = 200
                 pl.y = 0
-            if i.cret2(self.x + x, self.y+ 40+ y) == 1:
+            if i.cret1(self.x + x, self.y+ 20+ y) == 1:
                 pl.x = 200
                 pl.y = 0
-            if i.cret2(self.x + 30+ x, self.y+40+ y) == 1:
+            if i.cret1(self.x + 15+ x, self.y+20+ y) == 1:
                 pl.x = 200
                 pl.y = 0   
         self.x +=x
@@ -48,10 +49,11 @@ class platform:
         self.h = h
     def draw_(self):
         
-        rect(self.x,self.y,self.w,self.h)
+       # rect(self.x,self.y,self.w,self.h)
+        image(platformModel[0],self.x,self.y,self.w,self.h)
     def cret(self,x,y):
         point(x,y)
-        if x > self.x and x < self.x + self.w and y > self.y and y < self.y + self.h:
+        if x > self.x and x < self.x  + self.w and y > self.y and y < self.y + self.h:
             return 1
         else:
             return 0
@@ -75,17 +77,23 @@ class forg:
         if self.x <= 0:
             self.right = 1
             self.left = 0
-        if self.x >= 370:
+        if self.x >= 970:
             self.right = 0
             self.left = 1
-class fruits:
-    def __init__(self,x,y,m,g):
-        self.x = x
-        self.y = y
-        self.g = g
-        self.m = m
-    def draw_(self):
-        circle(self.x,self.y,100)
+            
+        if self.y < 370:
+            self.y += 4
+        if pl.y+ 40 >= 560:
+            if self.x < pl.x:
+                self.right = 1
+                self.left = 0
+                self.x += 4
+            if self.x > pl.x:
+                self.right = 0
+                self.left = 1
+                self.x -= 4
+        else:        
+            fors.speed = 1
 class final:
     def __init__(self,x,y):
         self.x = x
@@ -126,22 +134,38 @@ class gun:
             return 1
         else:
             return 0
-fors = forg(200,350,1,0,1)
+fors = forg(200,570,1,0,1)
 pl = player(200,40,200,5)
 jumpMODE = 0
-frut = fruits(-100,-100,-1,-1)
 group = [ ["30","370"],["50","250"] ]
 fruitMode = 1
-final = final(380,350)
+final = final(980,550)
 
 def setup():
-
+    lst_walls.append(platform(0,-10,1000,10))
+    
     lst_walls.append(platform(0,310,100,10))
     lst_walls.append(platform(0,310,100,10))
     lst_walls.append(platform(300,310,100,10))
     lst_walls.append(platform(150,250,100,10))
     lst_walls.append(platform(0,210,100,10))
     lst_walls.append(platform(300,210,100,10))
+    lst_walls.append(platform(0,410,100,10))
+    lst_walls.append(platform(300,410,100,10))
+    lst_walls.append(platform(0,510,100,10))
+    lst_walls.append(platform(300,510,100,10))
+    lst_walls.append(platform(150,510,100,10))
+    lst_walls.append(platform(150,340,100,10))
+    lst_walls.append(platform(400,0,10,460))
+    lst_walls.append(platform(600,70,10,460))
+    lst_walls.append(platform(430,510,180,10))
+    lst_walls.append(platform(500,450,100,10))
+    lst_walls.append(platform(400,390,100,10))
+    lst_walls.append(platform(500,330,100,10))
+    lst_walls.append(platform(400,270,100,10))
+    lst_walls.append(platform(500,205,100,10))
+    lst_walls.append(platform(400,140,100,10))
+    lst_walls.append(platform(500,70,100,10))
     
     lst_walls.append(platform(150,160,100,10))
     lst_walls.append(platform(0,100,100,10))
@@ -152,11 +176,13 @@ def setup():
     lst_spike.append(spike(70,180,30,30))
     
     lst_gun.append(gun(401,60))
-    size(400,400)
+    
+
+    size(1000,600)
 def draw():
-    global pl,jumpMODE,platf,fors,frut,group,fruitMode
+    global pl,jumpMODE,platf,fors,group,fruitMode,platformModel
     background(255)
-    frut.draw_()
+    platformModel = [loadImage("platformModel.png")]
     fors.draw_()
     fors.sleg()
     pl.draw_()
@@ -178,23 +204,8 @@ def draw():
         i.draw_()
     for i in lst_spike:
         i.draw_()
-    if fors.y < 370:
-        fors.y += 4
-    if pl.y+ 40 >= 360:
-        if fors.x < pl.x:
-            fors.right = 1
-            fors.left = 0
-            fors.x += 4
-        if fors.x > pl.x:
-            fors.right = 0
-            fors.left = 1
-            fors.x -= 4
-    else:        
-        fors.speed = 1
-        
-        
-    
-    if pl.x + 15 > 380 and pl.x + 15 < 380 + 20 and pl.y + 20 > 350 and pl.y + 20 < 350 + 50:
+
+    if pl.x + 15 > final.x and pl.x + 15 < final.x + 20 and pl.y + 20 > final.y and pl.y + 20 < final.y + 50:
         pl.x = 200
         pl.y = 0
         while len(lst_walls)>0:
@@ -214,7 +225,7 @@ def draw():
     
 
     if keyPressed:
-        if pl.x < 370:
+        if pl.x < 970:
             if key == 'd':
                 #pl.x += 3
                 pl.move(3,0)
@@ -224,30 +235,27 @@ def draw():
                 #pl.x -= 3
                 pl.move(-3,0)
 
-    if pl.y < 360 and pl.y+40 > 0:
+    if pl.y < 560 and pl.y+40 > 0:
         #pl.y += pl.speed
         pl.move(0,2)
-    if pl.y > pl.ys:
-        if jumpMODE == 1:
-            for i in lst_walls:
-                if i.cret(pl.x, pl.y - 6) == 1:
-                    pl.ys = pl.y
-                elif i.cret(pl.x + 30, pl.y - 6) == 1:
-                    pl.ys = pl.y
-                    
-                else :   
-                    pl.move(0,-6)
+
+    if jumpMODE == 1:
+        for i in lst_walls:
+            if i.cret(pl.x, pl.y - 6) == 1:
+                pl.ys = pl.y
+            elif i.cret(pl.x + 30, pl.y - 6) == 1:
+                pl.ys = pl.y
+        if pl.y > pl.ys:
+            pl.move(0,-6)
     if pl.y == pl.ys:
         jumpMODE = 0
  
-    if pl.y+40 < 0:
-        pl.y = 360
     if pl.x + 15 > fors.x and pl.x + 15 < fors.x + 30 and pl.y + 20 > fors.y and pl.y + 20 < fors.y + 30:
         pl.x = 200
         pl.y = 0
     
 def keyPressed():
     global pl,jumpMODE
-    if key == ' ':
-        pl.ys = pl.y - 50
+    if key == ' ' and jumpMODE == 0:
+        pl.ys = pl.y - 70
         jumpMODE = 1
