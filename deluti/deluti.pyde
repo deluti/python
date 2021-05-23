@@ -1,6 +1,5 @@
 lst_walls=[]
 lst_spike = []
-lst_gun = []
 lst_ladder = []
 class player:
     def __init__(self,x,y,ys,speed,R,L):
@@ -12,7 +11,7 @@ class player:
         self.L = L
     def draw_(self):
         #rect(self.x,self.y,30,40)
-        #image(playerModel[0],self.x,self.y+6,40,40)
+        image(playerModel[0],self.x,self.y+6,40,40)
         if key == 'a':
             self.L = 1
             self.R = 0
@@ -48,20 +47,7 @@ class player:
                 pl.y = 0
             if i.cret1(self.x + 15+ x, self.y+20+ y) == 1:
                 pl.x = 200
-                pl.y = 0   
-        for i in lst_gun:
-            if i.cret2(self.x + x, self.y+ y) == 1:
-                pl.x = 200
-                pl.y = 0
-            if i.cret2(self.x + 15 + x, self.y+ y) == 1:
-                pl.x = 200
-                pl.y = 0
-            if i.cret2(self.x + x, self.y+ 20+ y) == 1:
-                pl.x = 200
-                pl.y = 0
-            if i.cret2(self.x + 15+ x, self.y+20+ y) == 1:
-                pl.x = 200
-                pl.y = 0 
+                pl.y = 0    
         self.x +=x
         self.y +=y
     
@@ -95,7 +81,7 @@ class forg:
         self.right = right 
         self.speed = speed   
     def draw_(self):
-        rect(self.x,self.y,30,30)
+        #rect(self.x,self.y,30,30)
         if self.left == 1:
             image(sickerModelL[0],self.x,self.y-6,40,40)
         if self.right == 1:
@@ -153,21 +139,7 @@ class spike:
             pl.x = 200
             pl.y = 0
 
-class gun:
-    def __init__(self,x,y):
-        self.x = x
-        self.y = y
-    def draw_(self):
-        circle(self.x,self.y,20)
-        self.x -= 5
-        if self.x < 0:
-            self.x == 400  
-    def cret2(self,x,y):
-        point(x,y)
-        if x > self.x and x < self.x + 10 and y > self.y and y < self.y + 0:
-            return 1
-        else:
-            return 0
+
     def move(self):
         self.x -= 5
         if self.x < 0:
@@ -186,15 +158,42 @@ class ladder:
         pop()
         if pl.x + 15 > self.x and pl.y + 20 > self.y and pl.x + 15 < self.x + self.w and pl.y + 20 < self.y + self.h:
             pl.y -= 7
-  
-fors = forg(200,570,1,0,1)
-pl = player(200,40,200,5,0,1)
+class whiler:
+    def __init__(self,x,y,ys):
+        self.x = x 
+        self.y = y
+        self.ys = ys
+    def draw_(self):
+        rect(self.x,self.y,30,30)
+    def move(self,x,y):
+        for i in lst_walls:
+            if i.cret(self.x + x, self.y+ y) == 1:
+                return
+            if i.cret(self.x + 30 + x, self.y+ y) == 1:
+                return
+            if i.cret(self.x + x, self.y+ 30+ y) == 1:
+                return
+            if i.cret(self.x + 30+ x, self.y+30+ y) == 1:
+                return  
+        self.x += x
+        self.y += y
+        
+
+whiler = whiler(10,400,200)
+fors = forg(960,570,1,0,1)
+pl = player(0,0,200,5,0,1)
 jumpMODE = 0
 group = [ ["30","370"],["50","250"] ]
 fruitMode = 1
 final = final(980,550)
 
 def setup():
+    global sickerModelL,sickerModelR,playerModel,platformModel
+    sickerModelL = [loadImage("sickerL.png")]
+    sickerModelR = [loadImage("sickerR.png")]
+    playerModel = [loadImage("playerL.png"),loadImage("playerR.png")]
+    platformModel = [loadImage("platform.png")]
+
     lst_walls.append(platform(0,-10,1000,10))
     
     lst_walls.append(platform(0,310,100,10))
@@ -236,19 +235,17 @@ def setup():
     lst_spike.append(spike(600,70,10,450))
     lst_spike.append(spike(650,0,10,460))
     
-    lst_gun.append(gun(1000,300))
+
     
     lst_ladder.append(ladder(700,100,50,420))
 
     size(1000,600)
 def draw():
-    global pl,jumpMODE,platf,fors,group,fruitMode,sickerModelL,sickerModelR,playerModel,platformModel,gun
+    global pl,jumpMODE,platf,fors,group,fruitMode,sickerModelL,sickerModelR,playerModel,platformModel,whiler
     background(255)
-    print(jumpMODE)
-    sickerModelL = [loadImage("sickerL.png")]
-    sickerModelR = [loadImage("sickerR.png")]
-    playerModel = [loadImage("playerL.png"),loadImage("playerR.png")]
-    platformModel = [loadImage("platform.png")]
+    
+    #print(jumpMODE)
+    whiler.draw_()
     fors.draw_()
     fors.sleg()
     pl.draw_()
@@ -259,9 +256,25 @@ def draw():
         i.draw_()
     for i in lst_spike:
         i.draw_()
-    for i in lst_gun:
-        i.draw_()
-
+    if whiler.y < 570:
+        whiler.move(0,3)
+    if whiler.x < pl.x:
+        whiler.move(5,0)
+    if whiler.x > pl.x:
+        whiler.move(-5,0)
+    if whiler.x + 15 > pl.x and whiler.x + 15 < pl.x + 30 and whiler.y + 15 > pl.y and whiler.y + 15 < pl.y + 40:
+        pl.x = 200
+        pl.y = 0  
+#    if whiler.y > pl.y:
+#        for i in lst_walls:
+#            if i.cret(whiler.x, whiler.y - 6) == 1:
+#                whiler.ys = whiler.y
+#            elif i.cret(pl.x + 30, whiler.y - 6) == 1:
+#                whiler.ys = whiler.y
+#        if whiler.y > whiler.ys:
+#            whiler.move(0,-5)
+    
+    
         
     if pl.x + 15 > final.x and pl.x + 15 < final.x + 20 and pl.y + 20 > final.y and pl.y + 20 < final.y + 50:
         pl.x = 200
@@ -277,9 +290,21 @@ def draw():
         lst_walls.append(platform(150,140,100,10))
         lst_walls.append(platform(300,180,100,10))
         lst_walls.append(platform(200,220,100,10))
-        lst_walls.append(platform(100,270,270,10))
-        lst_walls.append(platform(370,210,10,50))
+        lst_walls.append(platform(100,270,100,10))
+        lst_walls.append(platform(200,270,100,10))
+        lst_walls.append(platform(300,270,100,10))
+        lst_walls.append(platform(400,370,100,10))
+        lst_walls.append(platform(500,370,100,10))
+        lst_walls.append(platform(550,300,100,10))
+        lst_walls.append(platform(450,230,100,10))
+        lst_walls.append(platform(550,160,100,10))
+        lst_walls.append(platform(450,90,100,10))
+        lst_walls.append(platform(650,370,100,10))
+        lst_walls.append(platform(850,370,100,10))
         
+        lst_spike.append(spike(500,0,10,300))
+        lst_spike.append(spike(700,0,10,300))
+        lst_spike.append(spike(600,100,10,300))
         lst_spike.append(spike(350,150,30,30))
         lst_spike.append(spike(100,350,300,30))
         
@@ -300,8 +325,10 @@ def draw():
     if pl.y < 560 and pl.y+40 > 0:
         #pl.y += pl.speed
         pl.move(0,2)
-
+   
+        
     if jumpMODE == 1:
+    
         for i in lst_walls:
             if i.cret(pl.x, pl.y - 6) == 1:
                 pl.ys = pl.y
@@ -316,9 +343,15 @@ def draw():
         pl.x = 200
         pl.y = 0
 
+        
 def keyPressed():
     global pl,jumpMODE
-    if key == ' ':
-        pl.ys = pl.y - 70
-        jumpMODE = 1
+    if key == ' ' and jumpMODE == 0 :
+       for wall in lst_walls:
+           if wall.cret(pl.x , pl.y+ 40 + 5) == 1 or wall.cret(pl.x +30, pl.y+ 40 + 5):
+               pl.ys = pl.y - 70
+               jumpMODE = 1
+                                        
+       
+        
     
