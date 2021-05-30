@@ -118,7 +118,8 @@ class final:
         self.x = x
         self.y = y
     def draw_(self):
-        rect(self.x,self.y,20,50)
+        image(doorModel[0],self.x,self.y)
+        #rect(self.x,self.y,20,50)
 class spike:
     def __init__(self,x,y,w,h):
         self.x = x
@@ -158,28 +159,16 @@ class ladder:
         pop()
         if pl.x + 15 > self.x and pl.y + 20 > self.y and pl.x + 15 < self.x + self.w and pl.y + 20 < self.y + self.h:
             pl.y -= 7
-class whiler:
-    def __init__(self,x,y,ys):
-        self.x = x 
-        self.y = y
-        self.ys = ys
-    def draw_(self):
-        rect(self.x,self.y,30,30)
-    def move(self,x,y):
-        for i in lst_walls:
-            if i.cret(self.x + x, self.y+ y) == 1:
-                return
-            if i.cret(self.x + 30 + x, self.y+ y) == 1:
-                return
-            if i.cret(self.x + x, self.y+ 30+ y) == 1:
-                return
-            if i.cret(self.x + 30+ x, self.y+30+ y) == 1:
-                return  
-        self.x += x
-        self.y += y
-        
 
-whiler = whiler(10,400,200)
+class start:
+    def __init__(self,x,y):
+        self.x = x
+        self.y = y
+    def draw_(self):
+        rect(self.x,self.y,300,60)
+start = start(350,240)
+gamemode = 0
+start1 = ["start"]
 fors = forg(960,570,1,0,1)
 pl = player(0,0,200,5,0,1)
 jumpMODE = 0
@@ -188,11 +177,12 @@ fruitMode = 1
 final = final(980,550)
 
 def setup():
-    global sickerModelL,sickerModelR,playerModel,platformModel
+    global sickerModelL,sickerModelR,playerModel,platformModel,doorModel
     sickerModelL = [loadImage("sickerL.png")]
     sickerModelR = [loadImage("sickerR.png")]
     playerModel = [loadImage("playerL.png"),loadImage("playerR.png")]
     platformModel = [loadImage("platform.png")]
+    doorModel = [loadImage("door.png")]
 
     lst_walls.append(platform(0,-10,1000,10))
     
@@ -238,110 +228,98 @@ def setup():
 
     
     lst_ladder.append(ladder(700,100,50,420))
-
+    textSize(50)
     size(1000,600)
 def draw():
-    global pl,jumpMODE,platf,fors,group,fruitMode,sickerModelL,sickerModelR,playerModel,platformModel,whiler
+    global pl,jumpMODE,platf,fors,group,fruitMode,sickerModelL,sickerModelR,playerModel,platformModel,start,gamemode,start1
     background(255)
-    
-    #print(jumpMODE)
-    whiler.draw_()
-    fors.draw_()
-    fors.sleg()
-    pl.draw_()
-    final.draw_()
-    for i in lst_ladder:
-        i.draw_()
-    for i in lst_walls:
-        i.draw_()
-    for i in lst_spike:
-        i.draw_()
-    if whiler.y < 570:
-        whiler.move(0,3)
-    if whiler.x < pl.x:
-        whiler.move(5,0)
-    if whiler.x > pl.x:
-        whiler.move(-5,0)
-    if whiler.x + 15 > pl.x and whiler.x + 15 < pl.x + 30 and whiler.y + 15 > pl.y and whiler.y + 15 < pl.y + 40:
-        pl.x = 200
-        pl.y = 0  
-#    if whiler.y > pl.y:
-#        for i in lst_walls:
-#            if i.cret(whiler.x, whiler.y - 6) == 1:
-#                whiler.ys = whiler.y
-#            elif i.cret(pl.x + 30, whiler.y - 6) == 1:
-#                whiler.ys = whiler.y
-#        if whiler.y > whiler.ys:
-#            whiler.move(0,-5)
-    
-    
-        
-    if pl.x + 15 > final.x and pl.x + 15 < final.x + 20 and pl.y + 20 > final.y and pl.y + 20 < final.y + 50:
-        pl.x = 200
-        pl.y = 0
-        while len(lst_walls)>0:
-            del lst_walls[0]
-        while len(lst_spike)>0:
-            del lst_spike[0]
-        while len(lst_ladder)>0:
-            del lst_ladder[0]
-        lst_walls.append(platform(0,310,100,10))
-        lst_walls.append(platform(0,100,100,10))
-        lst_walls.append(platform(150,140,100,10))
-        lst_walls.append(platform(300,180,100,10))
-        lst_walls.append(platform(200,220,100,10))
-        lst_walls.append(platform(100,270,100,10))
-        lst_walls.append(platform(200,270,100,10))
-        lst_walls.append(platform(300,270,100,10))
-        lst_walls.append(platform(400,370,100,10))
-        lst_walls.append(platform(500,370,100,10))
-        lst_walls.append(platform(550,300,100,10))
-        lst_walls.append(platform(450,230,100,10))
-        lst_walls.append(platform(550,160,100,10))
-        lst_walls.append(platform(450,90,100,10))
-        lst_walls.append(platform(650,370,100,10))
-        lst_walls.append(platform(850,370,100,10))
-        
-        lst_spike.append(spike(500,0,10,300))
-        lst_spike.append(spike(700,0,10,300))
-        lst_spike.append(spike(600,100,10,300))
-        lst_spike.append(spike(350,150,30,30))
-        lst_spike.append(spike(100,350,300,30))
-        
-    
-
-    if keyPressed:
-        if pl.x < 970:
-            if key == 'd':
-                #pl.x += 3
-                pl.move(3,0)
-
-        if pl.x > 0:
-            if key == 'a':
-                #pl.x -= 3
-                pl.move(-3,0)
-
-
-    if pl.y < 560 and pl.y+40 > 0:
-        #pl.y += pl.speed
-        pl.move(0,2)
-   
-        
-    if jumpMODE == 1:
-    
+    if gamemode == 0:
+        start.draw_()
+        push()
+        fill(0)
+        text(start1[0],430,280)
+        pop()
+    if mousePressed:
+        if mouseX > start.x and mouseX < start.x + 300 and mouseY > start.y and mouseY < start.y + 60:
+            gamemode = 1
+    if gamemode == 1:
+        fors.draw_()
+        fors.sleg()
+        pl.draw_()
+        final.draw_()
+        for i in lst_ladder:
+            i.draw_()
         for i in lst_walls:
-            if i.cret(pl.x, pl.y - 6) == 1:
-                pl.ys = pl.y
-            elif i.cret(pl.x + 30, pl.y - 6) == 1:
-                pl.ys = pl.y
-        if pl.y > pl.ys:
-            pl.move(0,-6)
-    if pl.y == pl.ys:
-        jumpMODE = 0
- 
-    if pl.x + 15 > fors.x and pl.x + 15 < fors.x + 30 and pl.y + 20 > fors.y and pl.y + 20 < fors.y + 30:
-        pl.x = 200
-        pl.y = 0
+            i.draw_()
+        for i in lst_spike:
+            i.draw_()
+
+        if pl.x + 15 > final.x and pl.x + 15 < final.x + 20 and pl.y + 20 > final.y and pl.y + 20 < final.y + 50:
+            pl.x = 200
+            pl.y = 0
+            while len(lst_walls)>0:
+                del lst_walls[0]
+            while len(lst_spike)>0:
+                del lst_spike[0]
+            while len(lst_ladder)>0:
+                del lst_ladder[0]
+            lst_walls.append(platform(0,310,100,10))
+            lst_walls.append(platform(0,100,100,10))
+            lst_walls.append(platform(150,140,100,10))
+            lst_walls.append(platform(300,180,100,10))
+            lst_walls.append(platform(200,220,100,10))
+            lst_walls.append(platform(100,270,100,10))
+            lst_walls.append(platform(200,270,100,10))
+
+            lst_walls.append(platform(400,370,100,10))
+            lst_walls.append(platform(500,370,100,10))
+            lst_walls.append(platform(550,300,100,10))
+            lst_walls.append(platform(450,230,100,10))
+            lst_walls.append(platform(550,160,100,10))
+            lst_walls.append(platform(450,90,100,10))
+            lst_walls.append(platform(650,370,100,10))
+            lst_walls.append(platform(850,370,100,10))
+            
+            lst_spike.append(spike(500,0,10,300))
+            lst_spike.append(spike(700,0,10,300))
+            lst_spike.append(spike(600,100,10,300))
+            lst_spike.append(spike(350,150,30,30))
+            lst_spike.append(spike(100,350,300,30))
+            
+        
+    
+        if keyPressed:
+            if pl.x < 970:
+                if key == 'd':
+                    #pl.x += 3
+                    pl.move(3,0)
+    
+            if pl.x > 0:
+                if key == 'a':
+                    #pl.x -= 3
+                    pl.move(-3,0)
+    
+    
+        if pl.y < 560 and pl.y+40 > 0:
+            #pl.y += pl.speed
+            pl.move(0,2)
+    
+            
+        if jumpMODE == 1:
+        
+            for i in lst_walls:
+                if i.cret(pl.x, pl.y - 6) == 1:
+                    pl.ys = pl.y
+                elif i.cret(pl.x + 30, pl.y - 6) == 1:
+                    pl.ys = pl.y
+            if pl.y > pl.ys:
+                pl.move(0,-6)
+        if pl.y == pl.ys:
+            jumpMODE = 0
+    
+        if pl.x + 15 > fors.x and pl.x + 15 < fors.x + 30 and pl.y + 20 > fors.y and pl.y + 20 < fors.y + 30:
+            pl.x = 200
+            pl.y = 0
 
         
 def keyPressed():
