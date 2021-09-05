@@ -1,0 +1,30 @@
+import random
+
+name = input("Укажите свое имя!")
+
+age = float(input("укажите свой возраст!"))
+q = 0
+ball = 0
+print("Привет " + name + "! Меня зовут Rosty! Я бот для Каптчи!")
+print("Тебе " + str(age))
+if (age<14):
+    print("ты еще маленький!")
+else:
+    print("Ты можешь пройти после Каптчи!")
+    q = float(input("2 равно 1 или 2?"))
+if q == 1:
+    print("Ответ не верный!")
+    q = float(input("2 равно 1 или 2?"))
+else:
+    print("Кптча пройдена!")
+    while q == 2:
+        
+        ball = input("задай вопрос на который ты можно ответить Да или Нет!")
+        if ball == "stop":
+            print("стоп!")
+            q = 0
+        else:
+            num = random.randint(1, 100)
+            print("Шанс этого: " + str(num))
+while q == 1:
+    q = float(input("2 равно 1 или 2?"))
