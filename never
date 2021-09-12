@@ -1,0 +1,12 @@
+import pyautogui
+import time
+
+
+pyautogui.moveTo(100,120)
+pyautogui.doubleClick()
+pyautogui.moveTo(340,60)
+
+pyautogui.click()
+time.sleep(1)
+pyautogui.write('https://youtu.be/dQw4w9WgXcQ', interval=0.25)
+pyautogui.press('enter')
